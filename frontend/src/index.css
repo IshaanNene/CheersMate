@@ -1,0 +1,560 @@
+/**
+ * Neo-Brutalism Design System
+ * 
+ * Design Principles:
+ * 1. Bold black borders (2-3px)
+ * 2. Hard offset shadows (no blur, offset 4-6px)
+ * 3. Warm colors - peach, skin, cream, white
+ * 4. Color-flip hover states
+ * 5. Rounded corners on interactive elements
+ * 6. Bold, uppercase typography
+ */
+
+/* Import bold fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  /* Warm Neo-Brutalism Palette */
+  --neo-peach: #FFBE98;
+  /* Primary warm accent */
+  --neo-skin: #F5D5C8;
+  /* Secondary skin tone */
+  --neo-cream: #FFF8F0;
+  /* Light cream background */
+  --neo-coral: #FF7F6E;
+  /* Vibrant coral for emphasis */
+  --neo-mint: #98E4C9;
+  /* Fresh mint accent */
+  --neo-lavender: #C8A8E9;
+  /* Soft purple accent */
+  --neo-white: #FFFFFF;
+  /* Pure white */
+  --neo-black: #1A1A1A;
+  /* Soft black for borders */
+
+  /* Semantic Colors */
+  --success: #7ED6A5;
+  /* Soft green */
+  --warning: #FFD166;
+  /* Warm yellow */
+  --error: #FF6B6B;
+  /* Soft coral red */
+  --info: var(--neo-mint);
+
+  /* App Theme - Warm Light Mode */
+  --bg-app: #FFF5EE;
+  /* Seashell/cream background */
+  --bg-panel: var(--neo-cream);
+  /* Cream panel */
+  --bg-card: var(--neo-white);
+  /* White cards */
+  --bg-input: var(--neo-white);
+
+  --text-primary: #2D2D2D;
+  /* Dark warm gray */
+  --text-secondary: #6B6B6B;
+  /* Medium gray */
+
+  --accent-color: var(--neo-peach);
+  --accent-secondary: var(--neo-coral);
+  --accent-hover: var(--neo-white);
+
+  --border: var(--neo-black);
+  --border-width: 3px;
+
+  /* Shadows - Hard offset, no blur! */
+  --shadow-sm: 2px 2px 0 0 var(--neo-black);
+  --shadow-md: 4px 4px 0 0 var(--neo-black);
+  --shadow-lg: 6px 6px 0 0 var(--neo-black);
+  --shadow-xl: 8px 8px 0 0 var(--neo-black);
+
+  /* Colored shadows */
+  --shadow-peach: 4px 4px 0 0 var(--neo-peach);
+  --shadow-coral: 4px 4px 0 0 var(--neo-coral);
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   NEO-BRUTALISM BUTTONS
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--neo-black);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.15s ease;
+  position: relative;
+  font-family: inherit;
+}
+
+/* Primary Button - Peach with color flip */
+.btn-primary {
+  background: var(--neo-peach);
+  color: var(--neo-black);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  background: var(--neo-white);
+  color: var(--neo-black);
+  box-shadow: var(--shadow-sm);
+  transform: translate(2px, 2px);
+}
+
+.btn-primary:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+
+/* Secondary Button - Coral */
+.btn-secondary {
+  background: var(--neo-coral);
+  color: var(--neo-white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+  background: var(--neo-white);
+  color: var(--neo-black);
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline Button */
+.btn-outline {
+  background: var(--neo-white);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--neo-black);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover {
+  background: var(--neo-skin);
+  box-shadow: var(--shadow-md);
+  transform: translate(-2px, -2px);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--neo-skin);
+  color: var(--text-primary);
+  border-color: var(--neo-black);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: var(--error);
+  color: var(--neo-white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger:hover {
+  background: #ff8888;
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Icon Button */
+.btn-icon {
+  padding: 10px;
+  min-width: 42px;
+  min-height: 42px;
+}
+
+/* Small Button */
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  gap: 6px;
+}
+
+/* Icon-only Button (for card actions) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--neo-white);
+  border: 2px solid var(--neo-black);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+}
+
+.icon-btn:hover {
+  background: var(--neo-peach);
+  color: var(--neo-black);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   NEO-BRUTALISM CARDS
+   ============================================ */
+
+.neo-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--neo-black);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+  transition: all 0.15s ease;
+}
+
+.neo-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+
+.neo-input {
+  padding: 12px 16px;
+  border: var(--border-width) solid var(--neo-black);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.neo-input::placeholder {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.neo-input:focus {
+  box-shadow: var(--shadow-md);
+  transform: translate(-2px, -2px);
+  border-color: var(--neo-peach);
+}
+
+/* Search input with icon */
+.neo-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--bg-input);
+  border: var(--border-width) solid var(--neo-black);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+}
+
+.neo-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+  padding: 14px 0;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+.neo-search input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   BADGES & TAGS
+   ============================================ */
+
+.neo-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: 2px solid var(--neo-black);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.neo-badge-peach {
+  background: var(--neo-peach);
+  color: var(--neo-black);
+}
+
+.neo-badge-coral {
+  background: var(--neo-coral);
+  color: var(--neo-white);
+  transform: rotate(2deg);
+}
+
+.neo-badge-mint {
+  background: var(--neo-mint);
+  color: var(--neo-black);
+}
+
+.neo-badge-green {
+  background: var(--success);
+  color: var(--neo-black);
+}
+
+.neo-badge-error {
+  background: var(--error);
+  color: var(--neo-white);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.neo-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border: var(--border-width) solid var(--neo-black);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.15s ease;
+  background: var(--neo-white);
+  color: var(--text-primary);
+}
+
+.neo-nav-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+  background: var(--neo-skin);
+}
+
+.neo-nav-item.active {
+  background: var(--neo-peach);
+  color: var(--neo-black);
+  box-shadow: var(--shadow-md);
+  transform: translate(-2px, -2px);
+}
+
+/* ============================================
+   STATUS INDICATORS
+   ============================================ */
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 2px solid var(--neo-black);
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.status-online {
+  background: var(--success);
+  color: var(--neo-black);
+}
+
+.status-offline {
+  background: #ddd;
+  color: #666;
+}
+
+/* Pulsing dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.heading-xl {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.heading-lg {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.heading-md {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.bg-peach {
+  background: var(--neo-peach) !important;
+  color: var(--neo-black) !important;
+}
+
+.bg-skin {
+  background: var(--neo-skin) !important;
+  color: var(--neo-black) !important;
+}
+
+.bg-coral {
+  background: var(--neo-coral) !important;
+  color: var(--neo-white) !important;
+}
+
+.bg-mint {
+  background: var(--neo-mint) !important;
+  color: var(--neo-black) !important;
+}
+
+.bg-white {
+  background: var(--neo-white) !important;
+  color: var(--neo-black) !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-entry {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Delete button styling */
+.btn-action-delete {
+  color: var(--text-secondary) !important;
+  transition: all 0.15s ease;
+}
+
+.btn-action-delete:hover {
+  color: var(--error) !important;
+  background: rgba(255, 107, 107, 0.15) !important;
+  border-color: var(--error) !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neo-cream);
+  border-left: 2px solid var(--neo-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neo-peach);
+  border: 2px solid var(--neo-black);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neo-coral);
+}
