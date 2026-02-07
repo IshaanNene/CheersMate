@@ -1,16 +1,9 @@
-/**
- * User Data Store - localStorage management for favorites, groups, usage stats
- */
 import type { UserData, UsageStat, PackageGroup, UninstalledPackage, BrewPackage, PackageCategory, CATEGORY_KEYWORDS } from './types';
 import { DEFAULT_USER_DATA } from './types';
 
 const STORAGE_KEY = 'brew-manager-user-data';
 const MAX_SEARCH_HISTORY = 20;
 const MAX_UNINSTALLED_HISTORY = 50;
-
-// =============================================================================
-// Core Storage Functions
-// =============================================================================
 
 export function getUserData(): UserData {
     try {
@@ -32,10 +25,6 @@ export function saveUserData(data: UserData): void {
     }
 }
 
-// =============================================================================
-// Favorites
-// =============================================================================
-
 export function isFavorite(packageName: string): boolean {
     return getUserData().favorites.includes(packageName);
 }
@@ -47,21 +36,19 @@ export function toggleFavorite(packageName: string): boolean {
     if (index > -1) {
         data.favorites.splice(index, 1);
         saveUserData(data);
-        return false; // No longer favorite
+        return false; 
+
     } else {
         data.favorites.push(packageName);
         saveUserData(data);
-        return true; // Now favorite
+        return true; 
+
     }
 }
 
 export function getFavorites(): string[] {
     return getUserData().favorites;
 }
-
-// =============================================================================
-// Package Groups
-// =============================================================================
 
 export function getGroups(): PackageGroup[] {
     return getUserData().groups;
@@ -109,10 +96,6 @@ export function getPackageGroups(packageName: string): PackageGroup[] {
     return getUserData().groups.filter(g => g.packages.includes(packageName));
 }
 
-// =============================================================================
-// Usage Statistics
-// =============================================================================
-
 export function trackPackageAccess(packageName: string): void {
     const data = getUserData();
     const stat = data.usageStats[packageName] || {
@@ -135,10 +118,6 @@ export function getPackageUsageCount(packageName: string): number {
     return getUserData().usageStats[packageName]?.clickCount || 0;
 }
 
-// =============================================================================
-// Recently Uninstalled
-// =============================================================================
-
 export function addToUninstalled(pkg: BrewPackage): void {
     const data = getUserData();
     const entry: UninstalledPackage = {
@@ -148,13 +127,10 @@ export function addToUninstalled(pkg: BrewPackage): void {
         desc: pkg.desc
     };
 
-    // Remove if already exists
     data.recentlyUninstalled = data.recentlyUninstalled.filter(p => p.name !== pkg.name);
 
-    // Add to beginning
     data.recentlyUninstalled.unshift(entry);
 
-    // Limit size
     if (data.recentlyUninstalled.length > MAX_UNINSTALLED_HISTORY) {
         data.recentlyUninstalled = data.recentlyUninstalled.slice(0, MAX_UNINSTALLED_HISTORY);
     }
@@ -172,22 +148,15 @@ export function removeFromUninstalled(packageName: string): void {
     saveUserData(data);
 }
 
-// =============================================================================
-// Search History
-// =============================================================================
-
 export function addSearchHistory(query: string): void {
     if (!query.trim()) return;
 
     const data = getUserData();
 
-    // Remove if already exists
     data.searchHistory = data.searchHistory.filter(q => q !== query);
 
-    // Add to beginning
     data.searchHistory.unshift(query);
 
-    // Limit size
     if (data.searchHistory.length > MAX_SEARCH_HISTORY) {
         data.searchHistory = data.searchHistory.slice(0, MAX_SEARCH_HISTORY);
     }
@@ -204,10 +173,6 @@ export function clearSearchHistory(): void {
     data.searchHistory = [];
     saveUserData(data);
 }
-
-// =============================================================================
-// Category Detection
-// =============================================================================
 
 const CATEGORY_KEYWORDS_MAP: Record<PackageCategory, string[]> = {
     development: ['compiler', 'language', 'runtime', 'sdk', 'ide', 'git', 'node', 'python', 'go', 'rust', 'java', 'ruby', 'php', 'swift', 'kotlin', 'llvm', 'gcc', 'cmake', 'make', 'debug', 'build', 'dev'],
@@ -236,10 +201,6 @@ export function detectCategory(pkg: BrewPackage): PackageCategory {
     return 'other';
 }
 
-// =============================================================================
-// Sorting Helpers
-// =============================================================================
-
 export function sortByFrequency(packages: BrewPackage[]): BrewPackage[] {
     const stats = getUsageStats();
     return [...packages].sort((a, b) => {
@@ -248,10 +209,6 @@ export function sortByFrequency(packages: BrewPackage[]): BrewPackage[] {
         return bCount - aCount;
     });
 }
-
-// =============================================================================
-// Auto-Update Config
-// =============================================================================
 
 export function getAutoUpdateConfig() {
     return getUserData().autoUpdateSchedule;
@@ -262,3 +219,4 @@ export function setAutoUpdateConfig(config: Partial<typeof DEFAULT_USER_DATA.aut
     data.autoUpdateSchedule = { ...data.autoUpdateSchedule, ...config };
     saveUserData(data);
 }
+
