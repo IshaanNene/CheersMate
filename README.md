@@ -7,10 +7,11 @@
     </td>
     <td>
       <blockquote>
-        Lets you browse, organize, and manage Homebrew packages with favorites, 
-        custom groups, usage stats, and one-click operations (install, upgrade, 
-        uninstall, pin), plus system maintenance tools like health checks, 
-        cleanup, and auto-update scheduling.
+        Lets you browse, organize, and manage Homebrew 
+        packages with favorites, custom groups, usage 
+        stats, and one-click operations (install, upgrade, 
+        uninstall, pin), plus system maintenance tools like 
+        health checks, cleanup, and auto-update scheduling.
       </blockquote>
     </td>
   </tr>
