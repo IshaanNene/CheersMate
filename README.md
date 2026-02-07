@@ -3,8 +3,7 @@
 <table>
   <tr>
     <td>
-      <img width="200" height="200" src="<img width="769" height="767" src="https://github.com/user-attachments/assets/3ae5a3b2-e756-4fb9-a45d-653a0f6480cd"/>
-
+      <img width="200" height="200" alt="logo" src="https://github.com/user-attachments/assets/a8fa2c8c-0261-4d4b-801a-7a7829e5b9ff" />
     </td>
     <td>
       <blockquote>
