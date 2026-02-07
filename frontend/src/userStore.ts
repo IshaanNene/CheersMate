@@ -1,4 +1,4 @@
-import type { UserData, UsageStat, PackageGroup, UninstalledPackage, BrewPackage, PackageCategory, CATEGORY_KEYWORDS } from './types';
+import type { UserData, UsageStat, PackageGroup, UninstalledPackage, BrewPackage, PackageCategory } from './types';
 import { DEFAULT_USER_DATA } from './types';
 
 const STORAGE_KEY = 'brew-manager-user-data';
